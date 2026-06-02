@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Open Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#002d29",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "primary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface": "#f8f9fb",
+                        "on-tertiary-fixed-variant": "#00504a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-primary-fixed-variant": "#153ea3",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-container": "#fcd400",
+                        "on-surface-variant": "#444653",
+                        "inverse-primary": "#b5c4ff",
+                        "surface-dim": "#d8dadc",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#004540",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#59dacd",
+                        "outline-variant": "#c4c5d5",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#003399",
+                        "background": "#f8f9fb",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary-container": "#2ebaae",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#8aa4ff",
+                        "surface-container": "#eceef0",
+                        "primary": "#002068",
+                        "on-tertiary-fixed": "#00201d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f8f9fb",
+                        "surface-tint": "#3557bc",
+                        "surface-container-low": "#f2f4f6",
+                        "outline": "#747684",
+                        "tertiary-fixed": "#78f7e9",
+                        "secondary": "#705d00",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-fixed": "#00164e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#6e5c00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "stack-md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Open Sans"],
+                        "body-md": ["Open Sans"],
+                        "display-lg": ["Open Sans"],
+                        "headline-md": ["Open Sans"],
+                        "headline-md-mobile": ["Open Sans"],
+                        "display-lg-mobile": ["Open Sans"],
+                        "label-md": ["Open Sans"],
+                        "title-lg": ["Open Sans"],
+                        "caption": ["Open Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface flex flex-col min-h-screen">
+<!-- TopNavBar (Mobile Optimized) -->
+<header class="bg-surface sticky top-0 z-50 w-full border-b border-outline-variant">
+<nav class="flex justify-between items-center px-margin-mobile py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary p-1 cursor-pointer" data-icon="menu" id="menuBtn">menu</button>
+<span class="font-headline-md-mobile text-headline-md-mobile font-bold text-primary">Podcanarias Educativo</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="search">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+</header>
+<!-- Mobile Menu Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-black/50 z-[60] hidden transition-opacity opacity-0" id="sideNavOverlay"></div>
+<aside class="fixed top-0 left-0 h-full w-64 bg-surface-bright z-[70] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col p-stack-md border-r border-outline-variant" id="sideNav">
+<div class="flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-2">
+<img alt="Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujnCu14JDf9zThm6-0VVSvdftPIzSqmi5dGinUbhx1Fq6O3LW037xT0qqUjf2A7t9Evr275VOPQB8j1-ce5nHM1gevlUdL02S0mDvaneF3-Q-M1ju7nOHrV2xPgjqdZftMyzm_LjXk4m1-Ian8NKUGcKTFjVqKNZPlPT2RtEMX4yKNhf73KAV9AaxOV7KKyjDFaDUCLgbZ-GvO_hbAvtVpy5e3Zm7MkkOxjd_6UzClDsjYq0Ls1gLKU0Yzs"/>
+<span class="font-headline-md-mobile text-headline-md-mobile text-primary">Podcanarias</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="close" id="closeBtn">close</button>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-4 p-3 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Inicio
+            </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-label-md text-label-md transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span> Podcasts
+            </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-label-md text-label-md transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="info">info</span> Proyecto
+            </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-label-md text-label-md transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span> Centros
+            </a>
+</div>
+</aside>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="bg-surface-container-low px-margin-mobile py-stack-md">
+<div class="flex flex-col gap-4">
+<img alt="La voz de nuestras aulas" class="w-full aspect-square max-h-[300px] object-contain mx-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ujnCu14JDf9zThm6-0VVSvdftPIzSqmi5dGinUbhx1Fq6O3LW037xT0qqUjf2A7t9Evr275VOPQB8j1-ce5nHM1gevlUdL02S0mDvaneF3-Q-M1ju7nOHrV2xPgjqdZftMyzm_LjXk4m1-Ian8NKUGcKTFjVqKNZPlPT2RtEMX4yKNhf73KAV9AaxOV7KKyjDFaDUCLgbZ-GvO_hbAvtVpy5e3Zm7MkkOxjd_6UzClDsjYq0Ls1gLKU0Yzs"/>
+<div class="text-center space-y-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">La voz de nuestras aulas</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Explora el talento y la creatividad de los centros educativos de Canarias a través del podcasting.</p>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 px-6 font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
+                    Explorar Últimos Episodios
+                </button>
+</div>
+</section>
+<!-- Filters Section (Horizontal Scroll) -->
+<section class="py-stack-md">
+<div class="px-margin-mobile mb-stack-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface">Nivel Educativo</h2>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-2 px-margin-mobile pb-2">
+<button class="whitespace-nowrap px-4 py-2 bg-secondary-container text-on-secondary-container border border-secondary font-label-md text-label-md rounded-xl">Todos</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">1º Primaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">2º Primaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">3º Primaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">4º Primaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">5º Primaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">6º Primaria</button>
+</div>
+<div class="px-margin-mobile mt-4 mb-stack-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface">Temáticas</h2>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-2 px-margin-mobile pb-2">
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">Ciencia</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">Cultura Canaria</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">Medio Ambiente</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface text-on-surface-variant border border-outline-variant font-label-md text-label-md rounded-xl">Literatura</button>
+</div>
+</section>
+<!-- Vertical Podcast List -->
+<section class="px-margin-mobile pb-stack-lg">
+<h2 class="font-title-lg text-title-lg text-on-surface mb-stack-sm">Episodios Recientes</h2>
+<div class="flex flex-col gap-4">
+<!-- Podcast Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant p-3 flex gap-4 transition-colors hover:bg-surface-container-low">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 object-cover rounded" data-alt="A close-up of a vintage-style microphone on a desk in a bright, minimalist school radio studio. The background is softly blurred with institutional blue and warm wooden accents. The lighting is clean and professional, emphasizing a modern educational atmosphere. Professional podcasting gear in a classroom setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMDatwh9nscNnLEyDWYqrWje5gak-3B9mcBXLNKTjk5fWL_enkzJtaqqDLSGPEfv6DVKoz5vxGQ0RKdvStgr7hvfxu-_XoBbkn0Mw0le7-MN80XPPs3WlVf1MjHpAof_kn03PCI7iLS_zqNZ99iHbOP4egHYVJKQs23JwUIzdTDo1yzsP2mdWsFYugOfGXkScKoKHRiZF0mtvJhQ_tVAVvLFUHFxMShaEGvCrz-sdtEZRlrT8sQJyo6ioCJN7kB4uP2jCDEI0GLnlR"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-white" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="flex-grow min-w-0">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Ciencia</span>
+<h3 class="font-label-md text-label-md text-on-surface truncate">Los Volcanes de las Islas</h3>
+<p class="font-caption text-caption text-on-surface-variant truncate">CEIP San Lorenzo</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]" data-icon="schedule">schedule</span>
+<span class="font-caption text-caption text-on-surface-variant">12:45 min</span>
+</div>
+</div>
+</article>
+<!-- Podcast Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant p-3 flex gap-4 transition-colors hover:bg-surface-container-low">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 object-cover rounded" data-alt="A brightly lit classroom library with colorful books and a small recording station. The scene is depicted in a clean, flat design aesthetic with soft daylight pouring in through large windows. The palette is dominated by corporate blue and sunny yellow highlights. A peaceful and inspiring space for student storytellers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmoN-ZgsEfkZFFOrwev1NJy5k4Pv5w_i8B2Lv1W-pCpnNsSqAacKg-KkBeCbx4pkceupHI_1BnVO9ulyOsh1lp-W-ZiM_YaVs57McRr8_7rw-Wy6NgKmNbaOXrtDyX-jtYdCbbezbEt2TpZv21NdlS-rC9hmKFvB4JEiEj3PLt23JahFeFAG0q53kseMlL-qWPVNEiy9HFQhlfQvCjP501_I3LOTJyz4aez30gBzFMZdv7vkPEZYQGRIlhaccwXSFxRCxzn1Hm3CI7"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-white" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="flex-grow min-w-0">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Literatura</span>
+<h3 class="font-label-md text-label-md text-on-surface truncate">Cuentos de Galdós</h3>
+<p class="font-caption text-caption text-on-surface-variant truncate">IES La Isleta</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]" data-icon="schedule">schedule</span>
+<span class="font-caption text-caption text-on-surface-variant">08:20 min</span>
+</div>
+</div>
+</article>
+<!-- Podcast Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant p-3 flex gap-4 transition-colors hover:bg-surface-container-low">
+<div class="relative flex-shrink-0">
+<img class="w-20 h-20 object-cover rounded" data-alt="Digital illustration of students wearing headphones and speaking into microphones. The style is flat and minimalist with clean lines and solid fills of blue and yellow. The environment is an open-plan school learning hub with white walls and bright accents. The mood is collaborative and technologically focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcUXXDCAA49jtJn4ytElQvgBmOKPjkI9CGUp5LLq3sH-y42QsBmHfPIcTvFM2ivx9QDwimc47tGT7ZDPcj6GzTRKsqr868oVCv2dwJcZEu5nYchs66dB_8dP4dRospLKRpRMP_YXC15Pf5lm_21_Cz1_9tZnkURWSY-WQPchrp8Jr0MGPK53zHiMVMv-p46tW59M7fHp2KbHzDYvFCJ2G1kxqsxqbV4Zcvf_nyhORqLdGA7gwT4sCNQIrDEzk-3W__bTBe1oRke7nM"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-white" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="flex-grow min-w-0">
+<span class="font-caption text-caption text-secondary uppercase tracking-wider">Historia</span>
+<h3 class="font-label-md text-label-md text-on-surface truncate">Nuestros Abuelos</h3>
+<p class="font-caption text-caption text-on-surface-variant truncate">CEIP Las Salinas</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]" data-icon="schedule">schedule</span>
+<span class="font-caption text-caption text-on-surface-variant">15:10 min</span>
+</div>
+</div>
+</article>
+</div>
+<button class="w-full mt-6 py-3 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary-fixed transition-colors">
+                Ver todos los episodios
+            </button>
+</section>
+</main>
+<!-- Simplified Institutional Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-lowest border-t border-outline-variant w-full px-margin-mobile py-stack-md flex flex-col items-center gap-stack-sm">
+<div class="flex flex-wrap justify-center gap-4 mb-4">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Aviso Legal</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidad</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Contacto</a>
+</div>
+<div class="text-center">
+<p class="font-brand-logo text-brand-logo font-bold text-on-surface mb-2">Podcanarias Educativo</p>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                © Gobierno de Canarias. Consejería de Educación, Formación Profesional, Actividad Física y Deportes.
+            </p>
+</div>
+</footer>
+<!-- FAB (Suppressed as per rules for mobile home, but optional for player) -->
+<!-- Not rendering FAB to maintain clean minimalist focus as per requirements -->
+<script>
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sideNav = document.getElementById('sideNav');
+        const overlay = document.getElementById('sideNavOverlay');
+
+        function toggleMenu() {
+            const isOpen = !sideNav.classList.contains('-translate-x-full');
+            if (isOpen) {
+                sideNav.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                overlay.classList.remove('opacity-100');
+                document.body.style.overflow = 'auto';
+            } else {
+                sideNav.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Active State Logic Simulation
+        document.querySelectorAll('aside a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('aside a').forEach(l => {
+                    l.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.remove('text-on-surface-variant');
+                link.classList.add('bg-primary-container', 'text-on-primary-container');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Colores institucionales del Gobierno de Canarias */
+  --color-primary: #002068;
+  --color-primary-container: #003399;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #8aa4ff;
+  --color-inverse-primary: #b5c4ff;
+
+  --color-secondary: #705d00;
+  --color-secondary-container: #fcd400;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #6e5c00;
+
+  --color-tertiary: #002d29;
+  --color-tertiary-container: #004540;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #2ebaae;
+
+  --color-background: #f8f9fb;
+  --color-surface: #f8f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-variant: #e0e3e5;
+
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #444653;
+  --color-outline: #747684;
+  --color-outline-variant: #c4c5d5;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* Tipografía */
+  --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Espaciado base 8px */
+  --spacing-base: 8px;
+  --spacing-container-max: 1200px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Audio player custom styles */
+audio {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+/* Focus visible para accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Animaciones con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Hide scrollbar for clean mobile UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed-variant": "#544600",
+                        "tertiary-fixed": "#78f7e9",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#004540",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-secondary-fixed": "#221b00",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary": "#705d00",
+                        "on-primary-container": "#8aa4ff",
+                        "on-primary-fixed": "#00164e",
+                        "tertiary": "#002d29",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c4c5d5",
+                        "outline": "#747684",
+                        "primary-container": "#003399",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b5c4ff",
+                        "surface": "#f8f9fb",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-container": "#eceef0",
+                        "secondary-container": "#fcd400",
+                        "primary-fixed": "#dce1ff",
+                        "tertiary-fixed-dim": "#59dacd",
+                        "surface-container-high": "#e6e8ea",
+                        "on-surface-variant": "#444653",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-fixed-variant": "#00504a",
+                        "on-tertiary-container": "#2ebaae",
+                        "surface-bright": "#f8f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#6e5c00",
+                        "on-primary-fixed-variant": "#153ea3",
+                        "primary": "#002068",
+                        "on-tertiary-fixed": "#00201d",
+                        "surface-tint": "#3557bc",
+                        "secondary-fixed": "#ffe16d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md-mobile": ["Open Sans"],
+                        "body-lg": ["Open Sans"],
+                        "caption": ["Open Sans"],
+                        "label-md": ["Open Sans"],
+                        "display-lg": ["Open Sans"],
+                        "headline-md": ["Open Sans"],
+                        "title-lg": ["Open Sans"],
+                        "display-lg-mobile": ["Open Sans"],
+                        "body-md": ["Open Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Mobile Top Bar (Contextual/Sub-page) -->
+<header class="sticky top-0 z-50 bg-surface flex items-center justify-between px-margin-mobile py-4 border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<button class="p-2 -ml-2 text-primary" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant truncate max-w-[200px]">Detalle del Episodio</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">share</span>
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero & Cover -->
+<section class="px-margin-mobile pt-stack-sm">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-4 text-on-surface-variant font-caption text-caption overflow-x-auto no-scrollbar whitespace-nowrap">
+<span>Inicio</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span>Podcasts</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary font-bold">El Teide</span>
+</nav>
+<div class="aspect-square w-full bg-surface-container rounded-lg overflow-hidden border border-outline-variant relative group mb-stack-sm">
+<img alt="Mount Teide Volcano" class="w-full h-full object-cover" data-alt="A majestic cinematic low-angle photograph of Mount Teide volcano in Tenerife, Canary Islands. The snow-capped peak rises above a sea of clouds under a clear blue morning sky. The lighting is crisp and natural, emphasizing the rugged textures of the volcanic rock and the pristine white snow. The overall aesthetic is educational, grand, and clean, following a professional light-mode institutional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6JiklHukecMUeIccA1i_AKsjAsZp6uQzcQxHHLMdB-vYxfqlVSV1Tmes74VC8oniIyRdtTIbLebIbC-TVTw7RLYz5QmQA0laNU10SM12XYMgdQaz0iFa-Zam4hDzEmZ54I20oTy8c388s_pMSfu4wCzcwPpjJ5-vNP1kitHc8zrgORXZ6KKxETj7AFvBM5AFCkM-iwEfnjqzUCaEBT1tTMUg75iSObhTPnqz3oGp5Eljifhol6RVXRE9KyS7G9HjZr04IOoO4fR9u"/>
+<div class="absolute bottom-4 right-4 bg-primary text-on-primary px-3 py-1 rounded-full text-label-md font-label-md">
+                    12:45
+                </div>
+</div>
+<div class="space-y-2">
+<div class="flex gap-2 flex-wrap">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-1 rounded-lg text-caption font-label-md border border-outline-variant">Ciencias de la Naturaleza</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-lg text-caption font-label-md border border-outline-variant">4º Primaria</span>
+</div>
+<h1 class="font-headline-md-mobile text-headline-md-mobile text-primary">Entrevista a un volcán: El Teide nos cuenta su historia</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Descubre los secretos geológicos de las Islas Canarias a través de la voz ficticia de nuestro pico más alto. Un viaje didáctico por la vulcanología.
+                </p>
+</div>
+</section>
+<!-- Audio Player Block -->
+<section class="mt-stack-md px-margin-mobile">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-stack-md">
+<!-- Progress Bar -->
+<div class="relative w-full h-1.5 bg-outline-variant rounded-full mb-2">
+<div class="absolute left-0 top-0 h-full w-1/3 bg-primary rounded-full"></div>
+<div class="absolute left-1/3 -top-1.5 w-4 h-4 bg-primary rounded-full border-2 border-surface"></div>
+</div>
+<div class="flex justify-between font-caption text-caption text-on-surface-variant mb-6">
+<span>04:15</span>
+<span>12:45</span>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-between">
+<button class="text-primary p-2">
+<span class="material-symbols-outlined text-[28px]">replay_10</span>
+</button>
+<div class="flex items-center gap-6">
+<button class="text-primary">
+<span class="material-symbols-outlined text-[32px]">skip_previous</span>
+</button>
+<button class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" id="playBtn">
+<span class="material-symbols-outlined text-[40px]" id="playIcon">play_arrow</span>
+</button>
+<button class="text-primary">
+<span class="material-symbols-outlined text-[32px]">skip_next</span>
+</button>
+</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined text-[28px]">forward_10</span>
+</button>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant flex justify-around">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">speed</span>
+<span class="text-caption font-label-md">1.0x</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">volume_up</span>
+<span class="text-caption font-label-md">Volumen</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">subtitles</span>
+<span class="text-caption font-label-md">Transcripción</span>
+</button>
+</div>
+</div>
+</section>
+<!-- CTAs -->
+<section class="mt-stack-md px-margin-mobile flex flex-col gap-stack-sm">
+<button class="w-full bg-primary-container text-on-primary py-4 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                Descargar Podcast
+            </button>
+<button class="w-full border border-primary text-primary py-4 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">share</span>
+                Compartir
+            </button>
+</section>
+<!-- Educational Content -->
+<section class="mt-stack-lg px-margin-mobile space-y-stack-md">
+<!-- Objetivos Didácticos -->
+<div class="border-l-4 border-primary pl-4">
+<h2 class="font-title-lg text-title-lg text-primary mb-2">Objetivos Didácticos</h2>
+<ul class="space-y-2 font-body-md text-body-md text-on-surface-variant">
+<li class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+                        Comprender el origen volcánico de las Islas Canarias.
+                    </li>
+<li class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+                        Identificar las partes principales de un edificio volcánico.
+                    </li>
+<li class="flex gap-2 items-start">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+                        Valorar el patrimonio natural del Teide.
+                    </li>
+</ul>
+</div>
+<!-- Competencias -->
+<div class="border-l-4 border-secondary pl-4">
+<h2 class="font-title-lg text-title-lg text-secondary mb-2">Competencias</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container rounded-full text-caption font-label-md text-on-surface-variant">C. Ciudadana</span>
+<span class="px-3 py-1 bg-surface-container rounded-full text-caption font-label-md text-on-surface-variant">C. Lingüística</span>
+<span class="px-3 py-1 bg-surface-container rounded-full text-caption font-label-md text-on-surface-variant">STEM</span>
+</div>
+</div>
+<!-- Material Didáctico Card -->
+<div class="bg-secondary-container rounded-xl p-stack-md flex items-center gap-4">
+<div class="bg-surface rounded-lg p-3 text-secondary">
+<span class="material-symbols-outlined text-[32px]">menu_book</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-label-md text-on-secondary-container">Guía del Profesor</h3>
+<p class="font-caption text-caption text-on-secondary-container opacity-80">PDF con actividades y test de evaluación.</p>
+</div>
+<button class="bg-on-secondary-container text-white p-2 rounded-full">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Related Episodes -->
+<section class="mt-stack-lg px-margin-mobile">
+<h2 class="font-title-lg text-title-lg text-primary mb-stack-sm">Episodios relacionados</h2>
+<div class="space-y-4">
+<!-- Episode 1 -->
+<div class="flex gap-4 items-center p-2 rounded-lg border border-outline-variant bg-surface-container-lowest active:bg-surface-container transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img alt="Volcano detail" class="w-full h-full object-cover" data-alt="Macro close-up of volcanic textures, featuring obsidian fragments and basaltic rock under dramatic side-lighting. The image shows intricate details of cooled lava in sharp focus. Deep blues and grays dominate the color palette, maintaining a scientific and clean aesthetic suitable for a modern educational UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV4ON-xi0TgMTwGawbkCRGdz2fNIJXwuSOHjDGKgBTXgXHjiCIWZZcAz2WeP2e2WCRPO9kQzTn2Qoxkwb1A_WHiZb7NxMdJuTzRoYfrafVb3ndtAyOiOEUuBx2d2vyagygg7w79E6GA7ERQOuvoAIcqIYTkLLWQNDC96iMUxE4O-qjeuZh7l4fjUqyVfT6TFClw79TteSTYLQFlocxjae3xVNaXzcfVX2YWi7AoNNScsdlcpIVxP-DFgu5BWl8_cKTUoAjM3fcbWnm"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1">Los ríos de piedra: Las coladas</h4>
+<p class="font-caption text-caption text-on-surface-variant">10 min • Geografía</p>
+</div>
+<span class="material-symbols-outlined text-primary">play_circle</span>
+</div>
+<!-- Episode 2 -->
+<div class="flex gap-4 items-center p-2 rounded-lg border border-outline-variant bg-surface-container-lowest active:bg-surface-container transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img alt="Pine trees" class="w-full h-full object-cover" data-alt="A serene landscape of the endemic Canary Island pines growing on volcanic soil under a soft afternoon sun. The bright green of the needles contrasts with the dark, copper-toned volcanic ash on the ground. The mood is peaceful and educational, with clear daylight lighting and high detail, consistent with institutional quality standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE1gJsWVYzlWqslBjmYn9nucySM8p2h0xmHRQFtPRxrLD4vLw5koxDDJ-u5d6jo0K7roY7ZTb85FCQEJ2UvRO1cf1evD9RuKsUej5iOIKbH5x16XqJ0tALgMPWa5vft5A3Q5Oo6Qifs2v74CI84udZBQaAhKv7unBWXFLnwBu1OQEOr7amvibqLmTxFMWHZs1nacO_-gLIktRwFCXLh1qoW6it08FidYn9NU30aOosYdFR6yNmXFDg3nyegkWPpGZJyBd2xdh_k9iz"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1">La vida en las cumbres</h4>
+<p class="font-caption text-caption text-on-surface-variant">15 min • Biología</p>
+</div>
+<span class="material-symbols-outlined text-primary">play_circle</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 font-label-md text-label-md text-primary flex justify-center items-center gap-2">
+                Ver todos los episodios
+                <span class="material-symbols-outlined">keyboard_arrow_down</span>
+</button>
+</section>
+</main>
+<!-- Footer Area (Government Branding) -->
+<footer class="bg-surface-container px-margin-mobile py-stack-md text-center flex flex-col items-center gap-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Podcanarias</span>
+<span class="w-px h-4 bg-outline"></span>
+<span class="text-caption font-caption text-on-surface-variant">Educativo</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant leading-tight">
+            © Gobierno de Canarias. Consejería de Educación, Formación Profesional, Actividad Física y Deportes.
+        </p>
+<div class="flex gap-4 mt-2">
+<a class="font-caption text-caption text-primary" href="#">Privacidad</a>
+<a class="font-caption text-caption text-primary" href="#">Accesibilidad</a>
+<a class="font-caption text-caption text-primary" href="#">Contacto</a>
+</div>
+</footer>
+<!-- Simplified Mobile Nav Shell (Optional context) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant flex justify-around py-3 z-[100]">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-label-md">Inicio</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="text-[10px] font-label-md">Podcasts</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-label-md">Centros</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">info</span>
+<span class="text-[10px] font-label-md">Proyecto</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for Play Button
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        let isPlaying = false;
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                playIcon.innerText = 'pause';
+                playBtn.classList.add('scale-110');
+            } else {
+                playIcon.innerText = 'play_arrow';
+                playBtn.classList.remove('scale-110');
+            }
+        });
+
+        // Toggle Speed simple simulation
+        const speedBtn = document.querySelector('button .material-symbols-outlined:contains("speed")')?.parentElement;
+        if(speedBtn) {
+            speedBtn.addEventListener('click', () => {
+                const text = speedBtn.querySelector('span:last-child');
+                const speeds = ['1.0x', '1.25x', '1.5x', '2.0x'];
+                let current = speeds.indexOf(text.innerText);
+                text.innerText = speeds[(current + 1) % speeds.length];
+            });
+        }
+    </script>
+</body></html>

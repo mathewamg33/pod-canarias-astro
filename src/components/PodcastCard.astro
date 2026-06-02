@@ -8,9 +8,11 @@ interface Props {
   level: string;
   duration: string;
   description: string;
+  episodeOrder?: number;
+  coverImage?: string;
 }
 
-const { slug, title, school, date, subject, level, duration, description } = Astro.props;
+const { slug, title, school, date, subject, level, duration, description, episodeOrder, coverImage } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('es-ES', {
   day: '2-digit',
@@ -26,34 +28,28 @@ const subjectColors: Record<string, string> = {
   'Matemáticas': 'bg-[#fff0f0] text-[#93000a] border-[#ffdad6]',
   'Cultura Canaria': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
   'Medio Ambiente': 'bg-[#e8f4ee] text-[#004540] border-[#2ebaae]',
-};
-
-const levelColors: Record<string, string> = {
-  '1º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '2º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '3º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '4º Primaria': 'bg-[#002068] text-white',
-  '5º Primaria': 'bg-[#002068] text-white',
-  '6º Primaria': 'bg-[#002068] text-white',
+  'Valores Cívicos': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
 };
 
 const subjectColor = subjectColors[subject] ?? subjectColors['Entrevistas'];
-const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
+const durationDisplay = duration === '--:--' ? 'Próximamente' : `${duration} min`;
 ---
 
 <article class="bg-white border border-[#e0e3e5] rounded hover:border-[#002068] transition-colors duration-200 cursor-pointer group flex flex-col overflow-hidden">
-  <!-- Thumbnail placeholder con onda de audio -->
+  <!-- Thumbnail placeholder -->
   <a href={`/podcasts/${slug}`} class="block relative aspect-video bg-gradient-to-br from-[#eceef0] to-[#d8dadc] overflow-hidden flex-shrink-0" aria-label={title} tabindex="-1">
-    <!-- Onda de audio decorativa -->
+    <!-- Onda decorativa -->
     <div class="absolute inset-0 flex items-center justify-center">
       <svg viewBox="0 0 200 60" class="w-3/4 opacity-20" aria-hidden="true">
         <polyline points="0,30 10,15 20,45 30,10 40,50 50,20 60,40 70,5 80,55 90,25 100,35 110,10 120,50 130,20 140,45 150,15 160,40 170,25 180,45 190,15 200,30" fill="none" stroke="#002068" stroke-width="2"/>
       </svg>
     </div>
-    <!-- Badge de nivel -->
-    <span class={`absolute top-3 right-3 text-xs font-semibold px-2 py-0.5 rounded ${levelColor}`}>
-      {level}
-    </span>
+    <!-- Badge episodio -->
+    {episodeOrder && (
+      <span class="absolute top-3 left-3 text-xs font-bold px-2 py-0.5 rounded bg-[#002068] text-white">
+        Ep. {episodeOrder}
+      </span>
+    )}
     <!-- Icono play central -->
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="w-12 h-12 bg-[#002068] rounded-full flex items-center justify-center shadow-md group-hover:bg-[#003399] transition-colors duration-200">
@@ -65,7 +61,7 @@ const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
   </a>
 
   <!-- Contenido -->
-  <div class="p-5 flex flex-col flex-1">
+  <div class="p-4 sm:p-5 flex flex-col flex-1">
     <!-- Meta superior -->
     <div class="flex items-center gap-2 mb-3 flex-wrap">
       <time datetime={date.toISOString()} class="text-xs text-[#747684]">{formattedDate}</time>
@@ -76,7 +72,7 @@ const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
     </div>
 
     <!-- Título -->
-    <h2 class="text-lg font-semibold text-[#191c1e] leading-snug mb-2 group-hover:text-[#002068] transition-colors duration-200">
+    <h2 class="text-base sm:text-lg font-semibold text-[#191c1e] leading-snug mb-2 group-hover:text-[#002068] transition-colors duration-200">
       <a href={`/podcasts/${slug}`} class="hover:underline">{title}</a>
     </h2>
 
@@ -99,7 +95,7 @@ const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12,6 12,12 16,14"/>
         </svg>
-        {duration} min
+        {durationDisplay}
       </span>
       <a
         href={`/podcasts/${slug}`}

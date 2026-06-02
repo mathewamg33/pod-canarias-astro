@@ -20,8 +20,8 @@ const { Content } = await render(podcast);
 
 const allPodcasts = await getCollection('podcasts');
 const related = allPodcasts
-  .filter((p) => p.id !== slug && p.data.subject === podcast.data.subject)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .filter((p) => p.id !== slug)
+  .sort((a, b) => (a.data.episodeOrder ?? 0) - (b.data.episodeOrder ?? 0))
   .slice(0, 3);
 
 const formattedDate = podcast.data.date.toLocaleDateString('es-ES', {
@@ -38,6 +38,7 @@ const subjectColors: Record<string, string> = {
   'Matemáticas': 'bg-[#fff0f0] text-[#93000a] border-[#ffdad6]',
   'Cultura Canaria': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
   'Medio Ambiente': 'bg-[#e8f4ee] text-[#004540] border-[#2ebaae]',
+  'Valores Cívicos': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
 };
 const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entrevistas'];
 ---
@@ -114,7 +115,7 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12,6 12,12 16,14"/>
             </svg>
-            {podcast.data.duration} min
+            {podcast.data.duration === '--:--' ? 'Próximamente' : `${podcast.data.duration} min`}
           </span>
         </div>
 
@@ -257,12 +258,12 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
                         {rel.data.title}
                       </p>
                       <p class="text-xs text-[#747684] mt-1">{rel.data.school} · {rel.data.level}</p>
-                      <p class="text-xs text-[#747684] mt-0.5 flex items-center gap-1">
+                        <p class="text-xs text-[#747684] mt-0.5 flex items-center gap-1">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                           <circle cx="12" cy="12" r="10"/>
                           <polyline points="12,6 12,12 16,14"/>
                         </svg>
-                        {rel.data.duration} min
+                        {rel.data.duration === '--:--' ? 'Próximamente' : `${rel.data.duration} min`}
                       </p>
                     </div>
                   </a>
@@ -280,19 +281,24 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
 
         <!-- Info del proyecto -->
         <div class="bg-[#002068] text-white rounded p-5">
-          <h3 class="text-base font-semibold mb-2">Sobre el proyecto</h3>
+          <h3 class="text-base font-semibold mb-1">SOMOS LA VOZ</h3>
+          <p class="text-xs text-[#b5c4ff] mb-3 font-medium">CEIP Mirador del Mar · 5º Primaria</p>
           <p class="text-sm text-[#b5c4ff] leading-relaxed mb-4">
-            Podcanarias Educativo es una iniciativa de la Consejería de Educación para impulsar
-            la expresión oral y las competencias digitales en Primaria.
+            Proyecto de podcast del aula de 5º de Primaria. El alumnado trabaja
+            la expresión oral, los valores cívicos y la competencia digital a lo largo de 8 episodios.
           </p>
-          <div class="bg-[#fcd400] text-[#221b00] rounded px-4 py-2.5 text-sm font-semibold inline-flex items-center gap-2 cursor-pointer hover:bg-[#e9c400] transition-colors duration-200">
+          <a
+            href="/podcasts"
+            class="bg-[#fcd400] text-[#221b00] rounded px-4 py-2.5 text-sm font-semibold inline-flex items-center gap-2 hover:bg-[#e9c400] transition-colors duration-200"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
             </svg>
-            Saber más
-          </div>
+            Ver todos los episodios
+          </a>
         </div>
       </aside>
 

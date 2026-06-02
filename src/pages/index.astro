@@ -5,23 +5,24 @@ import { getCollection } from 'astro:content';
 
 const allPodcasts = await getCollection('podcasts');
 const latestPodcasts = allPodcasts
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 6);
+  .sort((a, b) => (b.data.episodeOrder ?? 0) - (a.data.episodeOrder ?? 0))
+  .slice(0, 3);
 ---
 
-<BaseLayout title="Inicio" description="Podcasts realizados por el alumnado de Educación Primaria de Canarias.">
+<BaseLayout title="Inicio" description="Podcasts realizados por el alumnado de 5º de Primaria del CEIP Mirador del Mar. Proyecto SOMOS LA VOZ.">
 
   <!-- Hero -->
   <section class="bg-white border-b border-[#e0e3e5]">
-    <div class="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <h1 class="text-4xl md:text-5xl font-bold text-[#191c1e] leading-tight mb-4">
-            La voz de<br /><span class="text-[#002068]">nuestras aulas.</span>
+          <p class="text-xs font-semibold text-[#747684] uppercase tracking-widest mb-3">CEIP Mirador del Mar · 5º Primaria</p>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#191c1e] leading-tight mb-4">
+            SOMOS<br /><span class="text-[#002068]">LA VOZ</span>
           </h1>
-          <p class="text-lg text-[#444653] leading-relaxed mb-8 max-w-md">
-            Podcasts realizados por el alumnado de Educación Primaria de Canarias.
-            Descubre el talento y la creatividad de nuestros estudiantes a través de las ondas.
+          <p class="text-base sm:text-lg text-[#444653] leading-relaxed mb-8 max-w-md">
+            El alumnado de 5º de Primaria toma el micrófono para compartir sus ideas,
+            historias y reflexiones a través del podcast escolar.
           </p>
           <div class="flex flex-wrap gap-3">
             <a
@@ -31,36 +32,43 @@ const latestPodcasts = allPodcasts
               <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
                 <polygon points="5,3 19,12 5,21"/>
               </svg>
-              Explorar Podcasts
-            </a>
-            <a
-              href="/podcasts"
-              class="inline-flex items-center gap-2 border border-[#002068] text-[#002068] font-semibold px-6 py-3 rounded hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer"
-            >
-              Saber más
+              Explorar episodios
             </a>
           </div>
         </div>
 
-        <!-- Ilustración -->
+        <!-- Ilustración ON AIR -->
         <div class="hidden md:flex justify-center">
-          <div class="relative w-80 h-64 bg-gradient-to-br from-[#eceef0] to-[#e0e3e5] rounded-lg flex items-center justify-center border border-[#c4c5d5]">
-            <div class="text-center">
-              <div class="w-20 h-20 bg-[#002068] rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
-                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                  <line x1="12" y1="19" x2="12" y2="23"/>
-                  <line x1="8" y1="23" x2="16" y2="23"/>
-                </svg>
-              </div>
-              <p class="text-sm text-[#444653] font-semibold">Radio Escolar Canaria</p>
-              <p class="text-xs text-[#747684] mt-1">Alumnos de Primaria</p>
+          <div class="relative w-80 h-72 bg-gradient-to-br from-[#001a56] to-[#002068] rounded-2xl flex flex-col items-center justify-center border border-[#003399] shadow-lg overflow-hidden">
+            <!-- Ondas de fondo -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-10">
+              <svg viewBox="0 0 300 200" class="w-full" aria-hidden="true">
+                <ellipse cx="150" cy="100" rx="130" ry="80" fill="none" stroke="white" stroke-width="1.5"/>
+                <ellipse cx="150" cy="100" rx="100" ry="60" fill="none" stroke="white" stroke-width="1.5"/>
+                <ellipse cx="150" cy="100" rx="70" ry="40" fill="none" stroke="white" stroke-width="1.5"/>
+              </svg>
             </div>
-            <!-- Ondas decorativas -->
-            <div class="absolute -right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
-              {[32, 48, 40, 52, 36].map((h) => (
-                <div class="w-1 bg-[#002068] rounded-full opacity-20" style={`height: ${h}px`}></div>
+            <!-- Badge ON AIR -->
+            <div class="absolute top-5 right-5 bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow">
+              <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+              ON AIR
+            </div>
+            <!-- Micrófono SVG -->
+            <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-5 border border-white/20">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </div>
+            <!-- Texto -->
+            <p class="text-white font-bold text-xl tracking-wide">SOMOS LA VOZ</p>
+            <p class="text-white/60 text-xs mt-1 tracking-widest uppercase">CEIP Mirador del Mar</p>
+            <!-- Barra de audio decorativa -->
+            <div class="absolute bottom-5 flex items-end gap-1">
+              {[10, 18, 28, 22, 14, 30, 20, 16, 26, 12, 24, 18].map((h) => (
+                <div class="w-1.5 bg-white/40 rounded-full" style={`height: ${h}px`}></div>
               ))}
             </div>
           </div>
@@ -70,9 +78,9 @@ const latestPodcasts = allPodcasts
   </section>
 
   <!-- Últimos episodios -->
-  <section class="max-w-[1200px] mx-auto px-6 py-14">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-semibold text-[#191c1e]">Últimos Episodios</h2>
+      <h2 class="text-xl sm:text-2xl font-semibold text-[#191c1e]">Últimos episodios</h2>
       <a
         href="/podcasts"
         class="text-sm font-semibold text-[#002068] hover:text-[#003399] transition-colors duration-200 cursor-pointer flex items-center gap-1"
@@ -84,7 +92,7 @@ const latestPodcasts = allPodcasts
       </a>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {latestPodcasts.map((podcast) => (
         <PodcastCard
           slug={podcast.id}
@@ -95,6 +103,8 @@ const latestPodcasts = allPodcasts
           level={podcast.data.level}
           duration={podcast.data.duration}
           description={podcast.data.description}
+          episodeOrder={podcast.data.episodeOrder}
+          coverImage={podcast.data.coverImage}
         />
       ))}
     </div>
@@ -104,18 +114,18 @@ const latestPodcasts = allPodcasts
         href="/podcasts"
         class="inline-flex items-center gap-2 border border-[#002068] text-[#002068] font-semibold px-8 py-3 rounded hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer"
       >
-        Cargar más podcasts
+        Ver todos los episodios
       </a>
     </div>
   </section>
 
   <!-- Banner informativo -->
   <section class="bg-[#002068] text-white">
-    <div class="max-w-[1200px] mx-auto px-6 py-12 text-center">
-      <h2 class="text-2xl font-semibold mb-3">Un proyecto educativo para Canarias</h2>
-      <p class="text-[#b5c4ff] max-w-2xl mx-auto leading-relaxed">
-        Podcanarias Educativo es una iniciativa de la Consejería de Educación del Gobierno de Canarias
-        para impulsar la expresión oral, la creatividad y las competencias digitales en Educación Primaria.
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-12 text-center">
+      <h2 class="text-xl sm:text-2xl font-semibold mb-3">Un proyecto de voz y aprendizaje</h2>
+      <p class="text-[#b5c4ff] max-w-2xl mx-auto leading-relaxed text-sm sm:text-base">
+        <strong class="text-white">SOMOS LA VOZ</strong> es el proyecto de podcast del aula de 5º de Primaria del CEIP Mirador del Mar.
+        A través de 8 episodios, el alumnado trabaja la expresión oral, los valores cívicos y la competencia digital.
       </p>
     </div>
   </section>

@@ -7,7 +7,7 @@ const podcasts = defineCollection({
     title: z.string(),
     school: z.string(),
     date: z.coerce.date(),
-    subject: z.enum(['Ciencias', 'Historia', 'Lengua', 'Entrevistas', 'Matemáticas', 'Cultura Canaria', 'Medio Ambiente', 'Valores Cívicos']),
+    subject: z.enum(['Ciencias', 'Historia', 'Lengua', 'Entrevistas', 'Matemáticas', 'Cultura Canaria', 'Medio Ambiente']),
     level: z.enum(['1º Primaria', '2º Primaria', '3º Primaria', '4º Primaria', '5º Primaria', '6º Primaria']),
     duration: z.string(),
     audioFile: z.string().optional(),
@@ -16,7 +16,6 @@ const podcasts = defineCollection({
     objectives: z.array(z.string()).optional(),
     competencies: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
-    episodeOrder: z.number().min(1).optional(),
   }),
 });
 

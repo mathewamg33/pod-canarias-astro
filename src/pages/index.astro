@@ -4,29 +4,24 @@ import PodcastCard from '../components/PodcastCard.astro';
 import { getCollection } from 'astro:content';
 
 const allPodcasts = await getCollection('podcasts');
-const episodes = allPodcasts.sort((a, b) => {
-  const orderA = a.data.episodeOrder ?? 99;
-  const orderB = b.data.episodeOrder ?? 99;
-  if (orderA !== orderB) return orderA - orderB;
-  return a.data.date.getTime() - b.data.date.getTime();
-});
+const latestPodcasts = allPodcasts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 6);
 ---
 
-<BaseLayout title="Inicio" description="Proyecto de podcast escolar del alumnado de 5º de Primaria del CEIP Mirador del Mar.">
+<BaseLayout title="Inicio" description="Podcasts realizados por el alumnado de Educación Primaria de Canarias.">
 
   <!-- Hero -->
   <section class="bg-white border-b border-[#e0e3e5]">
     <div class="max-w-[1200px] mx-auto px-6 py-16 md:py-20">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-4xl md:text-5xl font-bold text-[#191c1e] leading-tight mb-2">
-            SOMOS<br /><span class="text-[#002068]">LA VOZ</span>
+          <h1 class="text-4xl md:text-5xl font-bold text-[#191c1e] leading-tight mb-4">
+            La voz de<br /><span class="text-[#002068]">nuestras aulas.</span>
           </h1>
-          <p class="text-base font-semibold text-[#444653] mb-1">5º de Primaria</p>
-          <p class="text-sm font-semibold text-[#002068] tracking-wide mb-5">CEIP MIRADOR DEL MAR</p>
           <p class="text-lg text-[#444653] leading-relaxed mb-8 max-w-md">
-            Educación en Valores Cívicos y Éticos · Lengua Castellana y Literatura.
-            Ocho episodios grabados por el alumnado durante el curso 2025-2026.
+            Podcasts realizados por el alumnado de Educación Primaria de Canarias.
+            Descubre el talento y la creatividad de nuestros estudiantes a través de las ondas.
           </p>
           <div class="flex flex-wrap gap-3">
             <a
@@ -36,7 +31,7 @@ const episodes = allPodcasts.sort((a, b) => {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
                 <polygon points="5,3 19,12 5,21"/>
               </svg>
-              Explorar episodios
+              Explorar Podcasts
             </a>
             <a
               href="/podcasts"
@@ -59,8 +54,8 @@ const episodes = allPodcasts.sort((a, b) => {
                   <line x1="8" y1="23" x2="16" y2="23"/>
                 </svg>
               </div>
-              <p class="text-sm text-[#444653] font-semibold">SOMOS LA VOZ</p>
-              <p class="text-xs text-[#747684] mt-1">5º Primaria · CEIP Mirador del Mar</p>
+              <p class="text-sm text-[#444653] font-semibold">Radio Escolar Canaria</p>
+              <p class="text-xs text-[#747684] mt-1">Alumnos de Primaria</p>
             </div>
             <!-- Ondas decorativas -->
             <div class="absolute -right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
@@ -74,10 +69,10 @@ const episodes = allPodcasts.sort((a, b) => {
     </div>
   </section>
 
-  <!-- Episodios -->
+  <!-- Últimos episodios -->
   <section class="max-w-[1200px] mx-auto px-6 py-14">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-semibold text-[#191c1e]">Los 8 episodios</h2>
+      <h2 class="text-2xl font-semibold text-[#191c1e]">Últimos Episodios</h2>
       <a
         href="/podcasts"
         class="text-sm font-semibold text-[#002068] hover:text-[#003399] transition-colors duration-200 cursor-pointer flex items-center gap-1"
@@ -90,7 +85,7 @@ const episodes = allPodcasts.sort((a, b) => {
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {episodes.map((podcast) => (
+      {latestPodcasts.map((podcast) => (
         <PodcastCard
           slug={podcast.id}
           title={podcast.data.title}
@@ -100,18 +95,27 @@ const episodes = allPodcasts.sort((a, b) => {
           level={podcast.data.level}
           duration={podcast.data.duration}
           description={podcast.data.description}
-          episodeOrder={podcast.data.episodeOrder}
         />
       ))}
     </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/podcasts"
+        class="inline-flex items-center gap-2 border border-[#002068] text-[#002068] font-semibold px-8 py-3 rounded hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer"
+      >
+        Cargar más podcasts
+      </a>
+    </div>
   </section>
 
-  <!-- Banner -->
+  <!-- Banner informativo -->
   <section class="bg-[#002068] text-white">
     <div class="max-w-[1200px] mx-auto px-6 py-12 text-center">
-      <h2 class="text-2xl font-semibold mb-3">Un proyecto del CEIP Mirador del Mar</h2>
+      <h2 class="text-2xl font-semibold mb-3">Un proyecto educativo para Canarias</h2>
       <p class="text-[#b5c4ff] max-w-2xl mx-auto leading-relaxed">
-        <strong class="text-white">SOMOS LA VOZ</strong> es un proyecto interdisciplinar de Educación en Valores Cívicos y Lengua Castellana desarrollado por el alumnado de 5º de Primaria durante el curso 2025-2026, en el marco de la programación didáctica del centro.
+        Podcanarias Educativo es una iniciativa de la Consejería de Educación del Gobierno de Canarias
+        para impulsar la expresión oral, la creatividad y las competencias digitales en Educación Primaria.
       </p>
     </div>
   </section>

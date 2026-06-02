@@ -6,12 +6,20 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Podcasts educativos realizados por alumnos de Educación Primaria de Canarias.' } = Astro.props;
+const { title, description = 'Proyecto de podcast escolar del alumnado de 5º de Primaria del CEIP Mirador del Mar.' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-const navLinks = [
+const realLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/podcasts', label: 'Podcasts' },
+  { href: '/podcasts', label: 'Episodios' },
+];
+
+const fakeLinks = [
+  'Noticias',
+  'Proyectos y Actividades',
+  'Familia',
+  'Celebraciones',
+  'Calendario Escolar 2025-2026',
 ];
 ---
 
@@ -21,7 +29,7 @@ const navLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <title>{title} | Podcanarias Educativo</title>
+    <title>{title} | SOMOS LA VOZ</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,7 +39,6 @@ const navLinks = [
     <!-- Barra institucional superior -->
     <div class="bg-[#002068] text-white text-xs py-1.5 px-4">
       <div class="max-w-[1200px] mx-auto flex items-center gap-2">
-        <!-- Logo C estilizada del Gobierno de Canarias -->
         <svg width="18" height="18" viewBox="0 0 36 36" fill="none" aria-hidden="true">
           <path d="M18 3C9.716 3 3 9.716 3 18C3 26.284 9.716 33 18 33C22.5 33 26.5 31 29.3 27.8L25.5 24.5C23.6 26.6 21 27.9 18 27.9C12.5 27.9 8.1 23.5 8.1 18C8.1 12.5 12.5 8.1 18 8.1C21 8.1 23.6 9.4 25.5 11.5L29.3 8.2C26.5 5 22.5 3 18 3Z" fill="white"/>
           <rect x="20" y="15" width="6" height="6" fill="#fcd400"/>
@@ -42,26 +49,30 @@ const navLinks = [
 
     <!-- Header principal -->
     <header class="bg-white border-b border-[#e0e3e5] sticky top-0 z-50">
-      <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
+
         <!-- Logo / Marca -->
-        <a href="/" class="flex items-center gap-3 group cursor-pointer" aria-label="Podcanarias Educativo - Inicio">
-          <div class="flex items-center gap-1.5">
-            <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <path d="M18 3C9.716 3 3 9.716 3 18C3 26.284 9.716 33 18 33C22.5 33 26.5 31 29.3 27.8L25.5 24.5C23.6 26.6 21 27.9 18 27.9C12.5 27.9 8.1 23.5 8.1 18C8.1 12.5 12.5 8.1 18 8.1C21 8.1 23.6 9.4 25.5 11.5L29.3 8.2C26.5 5 22.5 3 18 3Z" fill="#002068"/>
-              <rect x="20" y="15" width="6" height="6" fill="#fcd400"/>
-            </svg>
+        <a href="/" class="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" aria-label="SOMOS LA VOZ — Inicio">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#002068" stroke-width="1.8" aria-hidden="true">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          <div class="leading-none">
+            <span class="block font-bold text-[#002068] text-base tracking-tight group-hover:text-[#D4A017] transition-colors duration-200">
+              SOMOS LA VOZ
+            </span>
+            <span class="block text-[10px] text-[#747684] font-medium tracking-wide">CEIP MIRADOR DEL MAR · 5º PRIMARIA</span>
           </div>
-          <span class="font-bold text-[#002068] text-lg leading-tight group-hover:text-[#003399] transition-colors duration-200">
-            Podcanarias<br class="sm:hidden" /><span class="hidden sm:inline"> </span>Educativo
-          </span>
         </a>
 
         <!-- Nav desktop -->
-        <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
-          {navLinks.map(link => (
+        <nav class="hidden lg:flex items-center gap-0.5" aria-label="Navegación principal">
+          {realLinks.map(link => (
             <a
               href={link.href}
-              class={`px-4 py-2 text-sm font-semibold rounded transition-colors duration-200 cursor-pointer ${
+              class={`px-3 py-2 text-xs font-semibold rounded transition-colors duration-200 cursor-pointer whitespace-nowrap ${
                 currentPath === link.href || (link.href === '/podcasts' && currentPath.startsWith('/podcasts'))
                   ? 'text-[#002068] border-b-2 border-[#002068]'
                   : 'text-[#444653] hover:text-[#002068] hover:bg-[#f2f4f6]'
@@ -71,17 +82,26 @@ const navLinks = [
               {link.label}
             </a>
           ))}
+          {fakeLinks.map(label => (
+            <span
+              class="px-3 py-2 text-xs font-semibold text-[#747684] rounded cursor-default whitespace-nowrap select-none"
+              title="Próximamente"
+              aria-disabled="true"
+            >
+              {label}
+            </span>
+          ))}
         </nav>
 
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden p-2 rounded text-[#444653] hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer"
+          class="lg:hidden p-2 rounded text-[#444653] hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer flex-shrink-0"
           aria-label="Abrir menú"
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"/>
             <line x1="3" y1="12" x2="21" y2="12"/>
             <line x1="3" y1="18" x2="21" y2="18"/>
@@ -90,9 +110,9 @@ const navLinks = [
       </div>
 
       <!-- Mobile menu -->
-      <div id="mobile-menu" class="md:hidden hidden border-t border-[#e0e3e5] bg-white">
-        <nav class="px-4 py-3 flex flex-col gap-1" aria-label="Navegación móvil">
-          {navLinks.map(link => (
+      <div id="mobile-menu" class="lg:hidden hidden border-t border-[#e0e3e5] bg-white">
+        <nav class="px-4 py-3 flex flex-col gap-0.5" aria-label="Navegación móvil">
+          {realLinks.map(link => (
             <a
               href={link.href}
               class={`px-3 py-2.5 text-sm font-semibold rounded transition-colors duration-200 cursor-pointer ${
@@ -103,6 +123,12 @@ const navLinks = [
             >
               {link.label}
             </a>
+          ))}
+          <div class="my-1 border-t border-[#eceef0]"></div>
+          {fakeLinks.map(label => (
+            <span class="px-3 py-2.5 text-sm text-[#c4c5d5] font-medium select-none">
+              {label}
+            </span>
           ))}
         </nav>
       </div>
@@ -119,15 +145,19 @@ const navLinks = [
         <div class="flex flex-col md:flex-row justify-between gap-8">
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <svg width="24" height="24" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <path d="M18 3C9.716 3 3 9.716 3 18C3 26.284 9.716 33 18 33C22.5 33 26.5 31 29.3 27.8L25.5 24.5C23.6 26.6 21 27.9 18 27.9C12.5 27.9 8.1 23.5 8.1 18C8.1 12.5 12.5 8.1 18 8.1C21 8.1 23.6 9.4 25.5 11.5L29.3 8.2C26.5 5 22.5 3 18 3Z" fill="#002068"/>
-                <rect x="20" y="15" width="6" height="6" fill="#fcd400"/>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#002068" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
               </svg>
-              <span class="font-bold text-[#002068] text-base">Podcanarias Educativo</span>
+              <div>
+                <span class="block font-bold text-[#002068] text-sm">SOMOS LA VOZ</span>
+                <span class="block text-xs text-[#747684]">CEIP Mirador del Mar · 5º Primaria</span>
+              </div>
             </div>
             <p class="text-sm text-[#444653] max-w-xs leading-relaxed">
-              Podcasts realizados por el alumnado de Educación Primaria de Canarias.
-              Un proyecto de la Consejería de Educación.
+              Proyecto de podcast escolar de Educación en Valores Cívicos y Lengua Castellana. Curso 2025-2026.
             </p>
           </div>
 
@@ -136,7 +166,7 @@ const navLinks = [
               <h3 class="text-xs font-semibold text-[#191c1e] uppercase tracking-wider mb-3">Secciones</h3>
               <ul class="space-y-2">
                 <li><a href="/" class="text-sm text-[#444653] hover:text-[#002068] transition-colors duration-200 cursor-pointer">Inicio</a></li>
-                <li><a href="/podcasts" class="text-sm text-[#444653] hover:text-[#002068] transition-colors duration-200 cursor-pointer">Podcasts</a></li>
+                <li><a href="/podcasts" class="text-sm text-[#444653] hover:text-[#002068] transition-colors duration-200 cursor-pointer">Episodios</a></li>
               </ul>
             </div>
             <div>

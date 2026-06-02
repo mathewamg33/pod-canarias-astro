@@ -114,7 +114,7 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12,6 12,12 16,14"/>
             </svg>
-            {podcast.data.duration} min
+            {podcast.data.duration === '--:--' ? 'Próximamente' : `${podcast.data.duration} min`}
           </span>
         </div>
 
@@ -280,19 +280,23 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
 
         <!-- Info del proyecto -->
         <div class="bg-[#002068] text-white rounded p-5">
-          <h3 class="text-base font-semibold mb-2">Sobre el proyecto</h3>
+          <h3 class="text-base font-bold mb-2">SOMOS LA VOZ</h3>
+          <p class="text-xs text-[#b5c4ff] font-semibold mb-3 tracking-wide">CEIP MIRADOR DEL MAR · 5º PRIMARIA</p>
           <p class="text-sm text-[#b5c4ff] leading-relaxed mb-4">
-            Podcanarias Educativo es una iniciativa de la Consejería de Educación para impulsar
-            la expresión oral y las competencias digitales en Primaria.
+            Proyecto interdisciplinar de Educación en Valores Cívicos y Lengua Castellana. Ocho episodios grabados durante el curso 2025-2026.
           </p>
-          <div class="bg-[#fcd400] text-[#221b00] rounded px-4 py-2.5 text-sm font-semibold inline-flex items-center gap-2 cursor-pointer hover:bg-[#e9c400] transition-colors duration-200">
+          <a
+            href="/"
+            class="bg-[#D4A017] text-white rounded px-4 py-2.5 text-sm font-semibold inline-flex items-center gap-2 cursor-pointer hover:bg-[#b88a12] transition-colors duration-200"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
             </svg>
-            Saber más
-          </div>
+            Ver todos los episodios
+          </a>
         </div>
       </aside>
 

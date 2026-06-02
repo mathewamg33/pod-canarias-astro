@@ -8,55 +8,41 @@ interface Props {
   level: string;
   duration: string;
   description: string;
+  episodeOrder?: number;
 }
 
-const { slug, title, school, date, subject, level, duration, description } = Astro.props;
+const { slug, title, school, date, subject, level, duration, description, episodeOrder } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('es-ES', {
   day: '2-digit',
   month: 'long',
   year: 'numeric',
 });
-
-const subjectColors: Record<string, string> = {
-  'Ciencias': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Historia': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
-  'Lengua': 'bg-[#e8eeff] text-[#002068] border-[#b5c4ff]',
-  'Entrevistas': 'bg-[#f2f4f6] text-[#444653] border-[#c4c5d5]',
-  'Matemáticas': 'bg-[#fff0f0] text-[#93000a] border-[#ffdad6]',
-  'Cultura Canaria': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Medio Ambiente': 'bg-[#e8f4ee] text-[#004540] border-[#2ebaae]',
-};
-
-const levelColors: Record<string, string> = {
-  '1º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '2º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '3º Primaria': 'bg-[#fcd400] text-[#221b00]',
-  '4º Primaria': 'bg-[#002068] text-white',
-  '5º Primaria': 'bg-[#002068] text-white',
-  '6º Primaria': 'bg-[#002068] text-white',
-};
-
-const subjectColor = subjectColors[subject] ?? subjectColors['Entrevistas'];
-const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
 ---
 
-<article class="bg-white border border-[#e0e3e5] rounded hover:border-[#002068] transition-colors duration-200 cursor-pointer group flex flex-col overflow-hidden">
-  <!-- Thumbnail placeholder con onda de audio -->
-  <a href={`/podcasts/${slug}`} class="block relative aspect-video bg-gradient-to-br from-[#eceef0] to-[#d8dadc] overflow-hidden flex-shrink-0" aria-label={title} tabindex="-1">
-    <!-- Onda de audio decorativa -->
+<article class="bg-white border border-[#e0e3e5] rounded hover:border-[#D4A017] transition-colors duration-200 cursor-pointer group flex flex-col overflow-hidden">
+  <!-- Thumbnail con onda de audio -->
+  <a
+    href={`/podcasts/${slug}`}
+    class="block relative aspect-video bg-[#f5f0e8] overflow-hidden flex-shrink-0"
+    aria-label={title}
+    tabindex="-1"
+  >
+    <!-- Onda decorativa -->
     <div class="absolute inset-0 flex items-center justify-center">
-      <svg viewBox="0 0 200 60" class="w-3/4 opacity-20" aria-hidden="true">
-        <polyline points="0,30 10,15 20,45 30,10 40,50 50,20 60,40 70,5 80,55 90,25 100,35 110,10 120,50 130,20 140,45 150,15 160,40 170,25 180,45 190,15 200,30" fill="none" stroke="#002068" stroke-width="2"/>
+      <svg viewBox="0 0 200 60" class="w-3/4 opacity-15" aria-hidden="true">
+        <polyline points="0,30 10,15 20,45 30,10 40,50 50,20 60,40 70,5 80,55 90,25 100,35 110,10 120,50 130,20 140,45 150,15 160,40 170,25 180,45 190,15 200,30" fill="none" stroke="#D4A017" stroke-width="2.5"/>
       </svg>
     </div>
-    <!-- Badge de nivel -->
-    <span class={`absolute top-3 right-3 text-xs font-semibold px-2 py-0.5 rounded ${levelColor}`}>
-      {level}
-    </span>
-    <!-- Icono play central -->
+    <!-- Badge número de episodio -->
+    {episodeOrder && (
+      <span class="absolute top-3 left-3 text-xs font-bold bg-[#002068] text-white px-2 py-0.5 rounded">
+        EP. {episodeOrder}
+      </span>
+    )}
+    <!-- Icono play -->
     <div class="absolute inset-0 flex items-center justify-center">
-      <div class="w-12 h-12 bg-[#002068] rounded-full flex items-center justify-center shadow-md group-hover:bg-[#003399] transition-colors duration-200">
+      <div class="w-12 h-12 bg-[#002068] rounded-full flex items-center justify-center shadow-md group-hover:bg-[#D4A017] transition-colors duration-200">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
           <polygon points="5,3 19,12 5,21"/>
         </svg>
@@ -69,44 +55,31 @@ const levelColor = levelColors[level] ?? levelColors['1º Primaria'];
     <!-- Meta superior -->
     <div class="flex items-center gap-2 mb-3 flex-wrap">
       <time datetime={date.toISOString()} class="text-xs text-[#747684]">{formattedDate}</time>
-      <span class="text-[#c4c5d5]" aria-hidden="true">·</span>
-      <span class={`text-xs font-semibold px-2 py-0.5 rounded border ${subjectColor}`}>
-        {subject}
-      </span>
     </div>
 
     <!-- Título -->
-    <h2 class="text-lg font-semibold text-[#191c1e] leading-snug mb-2 group-hover:text-[#002068] transition-colors duration-200">
+    <h2 class="text-base font-semibold text-[#191c1e] leading-snug mb-2 group-hover:text-[#002068] transition-colors duration-200">
       <a href={`/podcasts/${slug}`} class="hover:underline">{title}</a>
     </h2>
-
-    <!-- Colegio -->
-    <p class="text-sm text-[#444653] mb-3 flex items-center gap-1.5">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0" aria-hidden="true">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9,22 9,12 15,12 15,22"/>
-      </svg>
-      {school}
-    </p>
 
     <!-- Descripción -->
     <p class="text-sm text-[#444653] leading-relaxed line-clamp-2 flex-1 mb-4">{description}</p>
 
-    <!-- Footer de la tarjeta -->
+    <!-- Footer tarjeta -->
     <div class="flex items-center justify-between mt-auto pt-4 border-t border-[#eceef0]">
       <span class="text-xs text-[#747684] flex items-center gap-1.5">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12,6 12,12 16,14"/>
         </svg>
-        {duration} min
+        {duration === '--:--' ? 'Próximamente' : `${duration} min`}
       </span>
       <a
         href={`/podcasts/${slug}`}
-        class="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-[#002068] hover:bg-[#003399] px-3 py-1.5 rounded transition-colors duration-200 cursor-pointer"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-[#002068] hover:bg-[#D4A017] px-3 py-1.5 rounded transition-colors duration-200 cursor-pointer"
         aria-label={`Escuchar: ${title}`}
       >
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="white" aria-hidden="true">
           <polygon points="5,3 19,12 5,21"/>
         </svg>
         Escuchar

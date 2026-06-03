@@ -1,4 +1,6 @@
 ---
+import { formatDuration } from '../lib/formatDuration';
+
 interface Props {
   slug: string;
   title: string;
@@ -14,25 +16,7 @@ interface Props {
 
 const { slug, title, school, date, subject, level, duration, description, episodeOrder, coverImage } = Astro.props;
 
-const formattedDate = date.toLocaleDateString('es-ES', {
-  day: '2-digit',
-  month: 'long',
-  year: 'numeric',
-});
-
-const subjectColors: Record<string, string> = {
-  'Ciencias': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Historia': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
-  'Lengua': 'bg-[#e8eeff] text-[#002068] border-[#b5c4ff]',
-  'Entrevistas': 'bg-[#f2f4f6] text-[#444653] border-[#c4c5d5]',
-  'Matemáticas': 'bg-[#fff0f0] text-[#93000a] border-[#ffdad6]',
-  'Cultura Canaria': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Medio Ambiente': 'bg-[#e8f4ee] text-[#004540] border-[#2ebaae]',
-  'Valores Cívicos': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
-};
-
-const subjectColor = subjectColors[subject] ?? subjectColors['Entrevistas'];
-const durationDisplay = duration === '--:--' ? 'Próximamente' : `${duration} min`;
+const durationDisplay = formatDuration(duration);
 ---
 
 <article class="bg-white border border-[#e0e3e5] rounded hover:border-[#002068] transition-colors duration-200 cursor-pointer group flex flex-col overflow-hidden">
@@ -64,10 +48,11 @@ const durationDisplay = duration === '--:--' ? 'Próximamente' : `${duration} mi
   <div class="p-4 sm:p-5 flex flex-col flex-1">
     <!-- Meta superior -->
     <div class="flex items-center gap-2 mb-3 flex-wrap">
-      <time datetime={date.toISOString()} class="text-xs text-[#747684]">{formattedDate}</time>
-      <span class="text-[#c4c5d5]" aria-hidden="true">·</span>
-      <span class={`text-xs font-semibold px-2 py-0.5 rounded border ${subjectColor}`}>
-        {subject}
+      <span class="text-xs font-semibold px-2 py-0.5 rounded border bg-[#e8eeff] text-[#002068] border-[#b5c4ff]">
+        Lengua Castellana y Literatura
+      </span>
+      <span class="text-xs font-semibold px-2 py-0.5 rounded border bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]">
+        Valores Cívicos y Éticos
       </span>
     </div>
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntry, render } from 'astro:content';
+import { formatDuration } from '../../lib/formatDuration';
 
 export async function getStaticPaths() {
   const podcasts = await getCollection('podcasts');
@@ -24,23 +25,6 @@ const related = allPodcasts
   .sort((a, b) => (a.data.episodeOrder ?? 0) - (b.data.episodeOrder ?? 0))
   .slice(0, 3);
 
-const formattedDate = podcast.data.date.toLocaleDateString('es-ES', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
-
-const subjectColors: Record<string, string> = {
-  'Ciencias': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Historia': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
-  'Lengua': 'bg-[#e8eeff] text-[#002068] border-[#b5c4ff]',
-  'Entrevistas': 'bg-[#f2f4f6] text-[#444653] border-[#c4c5d5]',
-  'Matemáticas': 'bg-[#fff0f0] text-[#93000a] border-[#ffdad6]',
-  'Cultura Canaria': 'bg-[#e8f4fd] text-[#004540] border-[#2ebaae]',
-  'Medio Ambiente': 'bg-[#e8f4ee] text-[#004540] border-[#2ebaae]',
-  'Valores Cívicos': 'bg-[#fff8e1] text-[#6e5c00] border-[#fcd400]',
-};
-const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entrevistas'];
 ---
 
 <BaseLayout title={podcast.data.title} description={podcast.data.description}>
@@ -75,15 +59,6 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
       <!-- Columna principal -->
       <div class="lg:col-span-2">
 
-        <!-- Etiquetas -->
-        <div class="flex flex-wrap gap-2 mb-5">
-          <span class={`text-xs font-semibold px-3 py-1 rounded border ${subjectColor}`}>
-            {podcast.data.subject}
-          </span>
-          <span class="text-xs font-semibold px-3 py-1 rounded bg-[#002068] text-white">
-            {podcast.data.level}
-          </span>
-        </div>
 
         <!-- Título -->
         <h1 class="text-3xl md:text-4xl font-bold text-[#191c1e] leading-tight mb-5">
@@ -100,22 +75,12 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
             {podcast.data.school}
           </span>
           <span class="text-[#c4c5d5]" aria-hidden="true">·</span>
-          <time datetime={podcast.data.date.toISOString()} class="flex items-center gap-1.5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            {formattedDate}
-          </time>
-          <span class="text-[#c4c5d5]" aria-hidden="true">·</span>
           <span class="flex items-center gap-1.5">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12,6 12,12 16,14"/>
             </svg>
-            {podcast.data.duration === '--:--' ? 'Próximamente' : `${podcast.data.duration} min`}
+            {formatDuration(podcast.data.duration)}
           </span>
         </div>
 
@@ -159,26 +124,25 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
           </div>
         </section>
 
-        <!-- Objetivos y competencias -->
-        {(podcast.data.objectives || podcast.data.competencies) && (
-          <section class="bg-white border border-[#e0e3e5] rounded p-6 mb-8">
-            <div class="grid sm:grid-cols-2 gap-6">
-              {podcast.data.objectives && podcast.data.objectives.length > 0 && (
-                <div>
-                  <h3 class="text-xs font-semibold text-[#444653] uppercase tracking-wider mb-4">
-                    Objetivos Didácticos
-                  </h3>
-                  <ul class="space-y-2">
-                    {podcast.data.objectives.map((obj) => (
-                      <li class="flex items-start gap-2 text-sm text-[#444653]">
-                        <span class="mt-1.5 w-1.5 h-1.5 bg-[#002068] rounded-full flex-shrink-0" aria-hidden="true"></span>
-                        {obj}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {podcast.data.competencies && podcast.data.competencies.length > 0 && (
+        <!-- Áreas y competencias -->
+        <section class="bg-white border border-[#e0e3e5] rounded p-6 mb-8">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-xs font-semibold text-[#444653] uppercase tracking-wider mb-4">
+                Áreas
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2 text-sm text-[#444653]">
+                  <span class="mt-1.5 w-1.5 h-1.5 bg-[#002068] rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  Lengua Castellana y Literatura
+                </li>
+                <li class="flex items-start gap-2 text-sm text-[#444653]">
+                  <span class="mt-1.5 w-1.5 h-1.5 bg-[#002068] rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  Valores Cívicos y Éticos
+                </li>
+              </ul>
+            </div>
+            {podcast.data.competencies && podcast.data.competencies.length > 0 && (
                 <div>
                   <h3 class="text-xs font-semibold text-[#444653] uppercase tracking-wider mb-4">
                     Competencias
@@ -194,7 +158,6 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
               )}
             </div>
           </section>
-        )}
 
         <!-- Acciones -->
         <div class="flex flex-wrap gap-3">
@@ -263,7 +226,7 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
                           <circle cx="12" cy="12" r="10"/>
                           <polyline points="12,6 12,12 16,14"/>
                         </svg>
-                        {rel.data.duration === '--:--' ? 'Próximamente' : `${rel.data.duration} min`}
+                        {formatDuration(rel.data.duration)}
                       </p>
                     </div>
                   </a>
@@ -282,10 +245,8 @@ const subjectColor = subjectColors[podcast.data.subject] ?? subjectColors['Entre
         <!-- Info del proyecto -->
         <div class="bg-[#002068] text-white rounded p-5">
           <h3 class="text-base font-semibold mb-1">SOMOS LA VOZ</h3>
-          <p class="text-xs text-[#b5c4ff] mb-3 font-medium">CEIP Mirador del Mar · 5º Primaria</p>
           <p class="text-sm text-[#b5c4ff] leading-relaxed mb-4">
-            Proyecto de podcast del aula de 5º de Primaria. El alumnado trabaja
-            la expresión oral, los valores cívicos y la competencia digital a lo largo de 8 episodios.
+            Hay proyectos que nacen de la cabeza, y otros que nacen del corazón. "Somos la voz" pertenece a los segundos. Surge de observar a nuestro alumnado y comprender que, aunque tienen mucho que decir, a veces les falta la seguridad para hacerlo. Les cuesta expresarse sin vergüenza, sin miedo al juicio, sin ese pudor que les frena incluso en conversaciones cotidianas. Por ello, este proyecto quiere recordarles algo esencial: su voz importa, en el recreo, en el aula y también en casa, cuando entrevistan a un familiar o comparten una historia personal.
           </p>
           <a
             href="/podcasts"

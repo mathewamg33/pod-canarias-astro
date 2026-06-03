@@ -7,7 +7,7 @@ level: "5º Primaria"
 duration: "00:30"
 audioFile: "/audio/voces-que-dejan-huella.mp3"
 coverImage: "/images/voces_que_dejan_huella.jpg"
-description: "En este primer episodio, el alumnado reflexiona sobre el impacto que tienen nuestras palabras y acciones en las personas que nos rodean."
+description: "Un alumno de 5º investiga cómo era la escuela antes y cómo es ahora, descubre la historia de la maestra canaria María Rosa Alonso y dedica un mensaje de agradecimiento al profesorado con motivo del Día Mundial del Docente."
 episodeOrder: 1
 objectives:
   - "Reflexionar sobre el valor de la comunicación oral"
@@ -18,8 +18,6 @@ competencies:
   - "Competencias sociales y cívicas"
 ---
 
-En este primer episodio del proyecto SOMOS LA VOZ, el alumnado de 5º de Primaria del CEIP Mirador del Mar reflexiona sobre el poder que tienen las palabras y las acciones para dejar huella en las personas que nos rodean.
+En el primer episodio, un alumno de 5º compara la escuela de antes —con pupitres de madera dura y largos caminos a pie— con la de ahora, reflexionando sobre el valor del trabajo docente. Descubre la biografía de María Rosa Alonso, maestra y escritora canaria que defendió la educación como camino de oportunidades.
 
-A través de sus propias experiencias, los estudiantes comparten historias que les han marcado y proponen maneras de impactar positivamente en su comunidad escolar y familiar.
-
-Este podcast inaugura un viaje de ocho episodios en el que la voz del alumnado se convierte en el protagonista del aprendizaje.
+Con motivo del Día Mundial del Docente, el alumnado concluye con un mensaje de agradecimiento: los profes enseñan, escuchan y creen en nosotros, y su huella vale más de lo que se ve.

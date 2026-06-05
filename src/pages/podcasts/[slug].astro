@@ -61,9 +61,15 @@ const related = allPodcasts
 
 
         <!-- Título -->
-        <h1 class="text-3xl md:text-4xl font-bold text-[#191c1e] leading-tight mb-5">
+        <h1 class="text-3xl md:text-4xl font-bold text-[#191c1e] leading-tight mb-3">
           {podcast.data.title}
         </h1>
+
+        {podcast.data.efemeride && (
+          <p class="text-base md:text-lg text-[#002068] font-medium mb-5">
+            {podcast.data.efemeride}
+          </p>
+        )}
 
         <!-- Meta -->
         <div class="flex flex-wrap items-center gap-4 mb-8 text-sm text-[#444653]">
@@ -83,6 +89,27 @@ const related = allPodcasts
             {formatDuration(podcast.data.duration)}
           </span>
         </div>
+
+        {podcast.data.coverImage && (
+          <figure class="mb-8 overflow-hidden rounded-lg border border-[#e0e3e5] bg-[#eceef0] shadow-sm">
+            <div class="relative aspect-video">
+              <img
+                src={podcast.data.coverImage}
+                alt={`Portada del episodio: ${podcast.data.title}`}
+                width="1536"
+                height="1024"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover"
+              />
+              {podcast.data.episodeOrder && (
+                <span class="absolute top-4 left-4 text-xs font-bold px-2.5 py-1 rounded bg-[#002068] text-white shadow-sm">
+                  Ep. {podcast.data.episodeOrder}
+                </span>
+              )}
+            </div>
+          </figure>
+        )}
 
         <!-- Reproductor de audio -->
         <div class="bg-white border border-[#e0e3e5] rounded p-5 mb-8">
@@ -124,7 +151,7 @@ const related = allPodcasts
           </div>
         </section>
 
-        <!-- Áreas y competencias -->
+        <!-- Áreas -->
         <section class="bg-white border border-[#e0e3e5] rounded p-6 mb-8">
           <div class="grid sm:grid-cols-2 gap-6">
             <div>
@@ -142,22 +169,18 @@ const related = allPodcasts
                 </li>
               </ul>
             </div>
-            {podcast.data.competencies && podcast.data.competencies.length > 0 && (
-                <div>
-                  <h3 class="text-xs font-semibold text-[#444653] uppercase tracking-wider mb-4">
-                    Competencias
-                  </h3>
-                  <div class="flex flex-wrap gap-2">
-                    {podcast.data.competencies.map((comp) => (
-                      <span class="text-xs bg-[#e8f4fd] text-[#004540] border border-[#2ebaae] px-2.5 py-1 rounded font-medium">
-                        {comp}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+            <div class="flex items-end sm:justify-end">
+              <button
+                type="button"
+                tabindex="-1"
+                aria-hidden="true"
+                class="inline-flex items-center bg-[#002068] text-white font-semibold px-5 py-2.5 rounded cursor-default pointer-events-none"
+              >
+                Más podcasts
+              </button>
             </div>
-          </section>
+          </div>
+        </section>
 
         <!-- Acciones -->
         <div class="flex flex-wrap gap-3">

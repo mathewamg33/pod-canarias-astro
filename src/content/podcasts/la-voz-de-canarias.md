@@ -6,8 +6,10 @@ subject: "Cultura Canaria"
 level: "5º Primaria"
 duration: "--:--"
 audioFile: "/audio/la-voz-de-canarias.mp3"
-description: "El alumnado de 5º celebra el Día de Canarias compartiendo refranes de la tradición oral canaria, descubriendo lo que hace única a cada isla y recordando las fiestas y costumbres que forman parte de su identidad."
+coverImage: "/images/7.jpeg"
+description: "El alumnado de 5º celebra el Día de Canarias con un podcast colectivo sobre refranes canarios analizados en clase, grabados y compartidos con la comunidad educativa y las familias."
 episodeOrder: 7
+efemeride: "Día de Canarias"
 objectives:
   - "Valorar y difundir la cultura y el patrimonio canario"
   - "Fortalecer la identidad cultural del alumnado"
@@ -17,8 +19,4 @@ competencies:
   - "Competencias sociales y cívicas"
 ---
 
-En el séptimo episodio, varias voces del alumnado de 5º celebran el Día de Canarias con un podcast coral. Cada alumno y alumna comparte su refrán favorito de la tradición oral canaria —"A mal tiempo, buena cara", "El que no tiene dinga, tiene mandinga", "Quien tiene un amigo, tiene un tesoro"— y explica su significado.
-
-El episodio recorre también la singularidad de cada isla (la Lanzarote volcánica, la verde La Palma, la tranquila El Hierro), las fiestas del archipiélago (romerías, enyesques, lucha canaria, Día de los Finados) y cómo las noticias de hoy también forman parte de la identidad canaria.
-
-Los estudiantes comparten lo que más aman de las Islas y proponen maneras de cuidar y preservar este patrimonio para las generaciones futuras.
+En el séptimo episodio, el alumnado de 5º celebra el Día de Canarias con un podcast que han trabajado en colectivo a través de refranes que han analizado. Cada alumno se graba con dichos refranes un podcast después de compartirlo a la comunidad educativa y familias. Ya que es una manera de seguir teniendo viva la tradición canaria, esos refranes que se transmiten de generación en generación. Feliz día de Canarias.

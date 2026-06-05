@@ -17,6 +17,7 @@ const podcasts = defineCollection({
     competencies: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
     episodeOrder: z.number().min(1).optional(),
+    efemeride: z.string().optional(),
   }),
 });
 

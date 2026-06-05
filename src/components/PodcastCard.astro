@@ -12,31 +12,42 @@ interface Props {
   description: string;
   episodeOrder?: number;
   coverImage?: string;
+  efemeride?: string;
 }
 
-const { slug, title, school, date, subject, level, duration, description, episodeOrder, coverImage } = Astro.props;
+const { slug, title, school, date, subject, level, duration, description, episodeOrder, coverImage, efemeride } = Astro.props;
 
 const durationDisplay = formatDuration(duration);
 ---
 
 <article class="bg-white border border-[#e0e3e5] rounded hover:border-[#002068] transition-colors duration-200 cursor-pointer group flex flex-col overflow-hidden">
-  <!-- Thumbnail placeholder -->
+  <!-- Thumbnail -->
   <a href={`/podcasts/${slug}`} class="block relative aspect-video bg-gradient-to-br from-[#eceef0] to-[#d8dadc] overflow-hidden flex-shrink-0" aria-label={title} tabindex="-1">
-    <!-- Onda decorativa -->
-    <div class="absolute inset-0 flex items-center justify-center">
-      <svg viewBox="0 0 200 60" class="w-3/4 opacity-20" aria-hidden="true">
-        <polyline points="0,30 10,15 20,45 30,10 40,50 50,20 60,40 70,5 80,55 90,25 100,35 110,10 120,50 130,20 140,45 150,15 160,40 170,25 180,45 190,15 200,30" fill="none" stroke="#002068" stroke-width="2"/>
-      </svg>
-    </div>
+    {coverImage ? (
+      <img
+        src={coverImage}
+        alt={title}
+        width="1536"
+        height="1024"
+        loading="lazy"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+    ) : (
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg viewBox="0 0 200 60" class="w-3/4 opacity-20" aria-hidden="true">
+          <polyline points="0,30 10,15 20,45 30,10 40,50 50,20 60,40 70,5 80,55 90,25 100,35 110,10 120,50 130,20 140,45 150,15 160,40 170,25 180,45 190,15 200,30" fill="none" stroke="#002068" stroke-width="2"/>
+        </svg>
+      </div>
+    )}
     <!-- Badge episodio -->
     {episodeOrder && (
-      <span class="absolute top-3 left-3 text-xs font-bold px-2 py-0.5 rounded bg-[#002068] text-white">
+      <span class="absolute top-3 left-3 text-xs font-bold px-2 py-0.5 rounded bg-[#002068] text-white z-10">
         Ep. {episodeOrder}
       </span>
     )}
     <!-- Icono play central -->
     <div class="absolute inset-0 flex items-center justify-center">
-      <div class="w-12 h-12 bg-[#002068] rounded-full flex items-center justify-center shadow-md group-hover:bg-[#003399] transition-colors duration-200">
+      <div class="w-12 h-12 bg-[#002068]/90 rounded-full flex items-center justify-center shadow-md group-hover:bg-[#003399] transition-colors duration-200">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
           <polygon points="5,3 19,12 5,21"/>
         </svg>
@@ -60,6 +71,10 @@ const durationDisplay = formatDuration(duration);
     <h2 class="text-base sm:text-lg font-semibold text-[#191c1e] leading-snug mb-2 group-hover:text-[#002068] transition-colors duration-200">
       <a href={`/podcasts/${slug}`} class="hover:underline">{title}</a>
     </h2>
+
+    {efemeride && (
+      <p class="text-sm text-[#002068] font-medium mb-2 leading-snug">{efemeride}</p>
+    )}
 
     <!-- Colegio -->
     <p class="text-sm text-[#444653] mb-3 flex items-center gap-1.5">

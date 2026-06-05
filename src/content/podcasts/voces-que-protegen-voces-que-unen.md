@@ -4,10 +4,12 @@ school: "CEIP Mirador del Mar"
 date: 2025-11-12
 subject: "Valores Cívicos"
 level: "5º Primaria"
-duration: "--:--"
+duration: "00:37"
 audioFile: "/audio/voces-que-protegen-voces-que-unen.mp3"
+coverImage: "/images/2.jpeg"
 description: "Una alumna de 5º aborda el acoso escolar y el ciberacoso con datos reales de Canarias, ofrece consejos prácticos para una convivencia responsable en Internet y lanza un mensaje de solidaridad a quienes lo están pasando mal, en el Día Internacional contra la Violencia y el Acoso."
 episodeOrder: 2
+efemeride: "Día Internacional contra la violencia y el acoso en la escuela incluido ciberacoso"
 objectives:
   - "Identificar situaciones en las que la comunicación favorece la convivencia"
   - "Promover actitudes de solidaridad y respeto mutuo"

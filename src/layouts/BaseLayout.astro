@@ -38,7 +38,7 @@ const fictitiousLinks = [
 
 
     <!-- Header principal -->
-    <header class="bg-white border-b border-[#e0e3e5] sticky top-0 z-50">
+    <header class="bg-[#e8f4fd] border-b border-[#c5dff5] sticky top-0 z-50">
       <div class="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <!-- Logo / Marca -->
         <a href="/" class="flex items-center gap-2.5 group cursor-pointer flex-shrink-0" aria-label="SOMOS LA VOZ - Inicio">
@@ -68,17 +68,17 @@ const fictitiousLinks = [
               class={`px-3 py-2 text-sm font-semibold rounded whitespace-nowrap transition-colors duration-200 cursor-pointer ${
                 currentPath === link.href || (link.href === '/podcasts' && currentPath.startsWith('/podcasts'))
                   ? 'text-[#002068] border-b-2 border-[#002068]'
-                  : 'text-[#444653] hover:text-[#002068] hover:bg-[#f2f4f6]'
+                  : 'text-[#444653] hover:text-[#002068] hover:bg-white/60'
               }`}
               aria-current={currentPath === link.href ? 'page' : undefined}
             >
               {link.label}
             </a>
           ))}
-          <span class="mx-1 text-[#e0e3e5]" aria-hidden="true">|</span>
+          <span class="mx-1 text-[#a8cce8]" aria-hidden="true">|</span>
           {fictitiousLinks.map(link => (
             <span
-              class="px-3 py-2 text-sm text-[#aab0bb] whitespace-nowrap cursor-default select-none"
+              class="px-3 py-2 text-sm text-[#8aa8c4] whitespace-nowrap cursor-default select-none"
               aria-hidden="true"
               title="Sección de demostración"
             >
@@ -90,7 +90,7 @@ const fictitiousLinks = [
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="lg:hidden p-2 rounded text-[#444653] hover:bg-[#f2f4f6] transition-colors duration-200 cursor-pointer flex-shrink-0"
+          class="lg:hidden p-2 rounded text-[#444653] hover:bg-white/60 transition-colors duration-200 cursor-pointer flex-shrink-0"
           aria-label="Abrir menú"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -104,23 +104,23 @@ const fictitiousLinks = [
       </div>
 
       <!-- Mobile menu -->
-      <div id="mobile-menu" class="lg:hidden hidden border-t border-[#e0e3e5] bg-white">
+      <div id="mobile-menu" class="lg:hidden hidden border-t border-[#c5dff5] bg-[#e8f4fd]">
         <nav class="px-4 py-3 flex flex-col gap-0.5" aria-label="Navegación móvil">
           {functionalLinks.map(link => (
             <a
               href={link.href}
               class={`px-3 py-2.5 text-sm font-semibold rounded transition-colors duration-200 cursor-pointer ${
                 currentPath === link.href || (link.href === '/podcasts' && currentPath.startsWith('/podcasts'))
-                  ? 'text-[#002068] bg-[#f2f4f6]'
-                  : 'text-[#444653] hover:text-[#002068] hover:bg-[#f2f4f6]'
+                  ? 'text-[#002068] bg-white/60'
+                  : 'text-[#444653] hover:text-[#002068] hover:bg-white/60'
               }`}
             >
               {link.label}
             </a>
           ))}
-          <div class="my-1 border-t border-[#eceef0]"></div>
+          <div class="my-1 border-t border-[#c5dff5]"></div>
           {fictitiousLinks.map(link => (
-            <span class="px-3 py-2 text-sm text-[#c4c5d5] cursor-default">
+            <span class="px-3 py-2 text-sm text-[#8aa8c4] cursor-default">
               {link.label}
             </span>
           ))}

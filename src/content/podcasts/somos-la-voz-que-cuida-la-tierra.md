@@ -4,7 +4,7 @@ school: "CEIP Mirador del Mar"
 date: 2026-05-20
 subject: "Medio Ambiente"
 level: "5º Primaria"
-duration: "--:--"
+duration: "00:39"
 audioFile: "/audio/somos-la-voz-que-cuida-la-tierra.mp3"
 coverImage: "/images/8.jpeg"
 description: "Una alumna de 5º reflexiona sobre los problemas medioambientales de Canarias —residuos y contaminación— a través de datos reales y presenta su tarjeta del Reto Verde con propuestas concretas para cuidar las playas y reducir el plástico, con motivo del Día del Medioambiente."

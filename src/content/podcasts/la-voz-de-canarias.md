@@ -4,7 +4,7 @@ school: "CEIP Mirador del Mar"
 date: 2026-04-22
 subject: "Cultura Canaria"
 level: "5º Primaria"
-duration: "--:--"
+duration: "00:40"
 audioFile: "/audio/la-voz-de-canarias.mp3"
 coverImage: "/images/7.jpeg"
 description: "El alumnado de 5º celebra el Día de Canarias con un podcast colectivo sobre refranes canarios analizados en clase, grabados y compartidos con la comunidad educativa y las familias."

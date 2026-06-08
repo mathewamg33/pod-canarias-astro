@@ -4,7 +4,7 @@ school: "CEIP Mirador del Mar"
 date: 2026-01-21
 subject: "Valores Cívicos"
 level: "5º Primaria"
-duration: "00:50"
+duration: "00:48"
 audioFile: "/audio/sembradores-de-paz-voces-que-transforman.mp3"
 coverImage: "/images/4.jpeg"
 description: "Un alumno de 5º reflexiona sobre la violencia en la calle y en Internet, aprende lo que hacen la ONU, UNICEF y ACNUR por los derechos humanos, y comparte la experiencia de representar un conflicto en una obra de teatro para sensibilizar a las familias y al centro."
